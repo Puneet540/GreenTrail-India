@@ -48,7 +48,7 @@ export default function DestinationsPage() {
       </header>
 
       {/* ── MOBILE SPACER — pushes content below fixed header ── */}
-      <div className="md:hidden" style={{height: 56}}/>
+      <div className="md:hidden h-14" />
 
       {/* ── MOBILE SEARCH DROPDOWN ── */}
       {showSearch && (
@@ -79,17 +79,30 @@ export default function DestinationsPage() {
         </div>
       )}
 
+      <div className="relative h-[320px] overflow-hidden">
+  <img
+    src="/images/destinations-hero.jpg"
+    className="absolute inset-0 w-full h-full object-cover"
+    alt="Explore India"
+  />
+
+  <div className="absolute inset-0 bg-black/40" />
+
+  <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
+    <h1 className="text-5xl font-serif mb-4">
+      Discover India
+    </h1>
+
+    <p className="text-lg">
+      Explore iconic destinations and hidden gems.
+    </p>
+  </div>
+</div>
+
       {/* Desktop header */}
-      <section className="hidden md:block pt-32 pb-10 px-6 max-w-7xl mx-auto">
-        <h1 className="font-serif text-5xl md:text-6xl text-primary mb-3">Discover the Real India</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl">
-          {selectedState==="All" ? `${DESTINATIONS.length}+ curated destinations across all 28 states` : `${filtered.length} destinations in ${selectedState}`}
-        </p>
-      </section>
 
       {/* Sticky filter bar */}
-      <div className="sticky top-14 md:top-16 z-30 px-3 md:px-6 py-2.5 border-b border-border/40"
-        style={{background:"rgba(249,250,242,0.92)",backdropFilter:"blur(16px)"}}>
+      <div className="px-3 md:px-6 py-2.5 border-b border-border/40 bg-background">
         <div className="max-w-7xl mx-auto">
           {/* State chips */}
           <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">

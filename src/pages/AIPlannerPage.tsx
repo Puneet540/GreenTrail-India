@@ -182,7 +182,7 @@ Respond ONLY with valid JSON matching this exact schema (no markdown, no backtic
   return (
     <div className="min-h-screen bg-surface pb-24 md:pb-8">
       {/* Hero */}
-      <section className="relative pt-28 pb-16 px-4 text-center overflow-hidden">
+      <section className="relative pt-28 pb-28 px-4 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80" alt="Mountains" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-surface" />
@@ -191,7 +191,7 @@ Respond ONLY with valid JSON matching this exact schema (no markdown, no backtic
           <Badge variant="outline" className="border-white/30 text-white/80 backdrop-blur-sm mb-6 text-xs px-3 py-1">
             <Sparkles className="w-3 h-3 mr-1" /> AI-Powered Planning
           </Badge>
-          <h1 className="text-5xl md:text-6xl font-serif text-white mb-4 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-serif text-white mb-4 leading-tight">
             Plan Your<br />Perfect Eco-Journey
           </h1>
           <p className="text-white/80 text-lg max-w-lg mx-auto">
@@ -201,7 +201,7 @@ Respond ONLY with valid JSON matching this exact schema (no markdown, no backtic
       </section>
 
       {/* Planner Form */}
-      <section className="max-w-3xl mx-auto px-4 -mt-8 relative z-10 space-y-8">
+      <section className="max-w-3xl mx-auto px-4 mt-8 relative z-10 space-y-8">
 
         {/* Mood */}
         <div className="glass rounded-[28px] p-6">

@@ -11,6 +11,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useDestinationImage } from "@/hooks/useDestinationImage";
 import { Link, useSearch } from "wouter";
 import { useAuth } from "@/context/AuthContext";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const REGION_CHIPS = ["All","Himachal Pradesh","Uttarakhand","Kerala","Ladakh","Rajasthan","Goa","Karnataka","Meghalaya"];
 const ENV_TYPES = ["Mountains","Forest","River","Backwaters","Desert","Beach"];
@@ -116,9 +118,6 @@ export default function StaysPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [liveHotels, setLiveHotels]   = useState<DisplayStay[]>([]);
   const [loadingLive, setLoadingLive] = useState(false);
-  const [checkin,  setCheckin]  = useState("");
-  const [checkout, setCheckout] = useState("");
-  const [guests,   setGuests]   = useState("2");
 
   const searchString = useSearch();
   const queryCity = useMemo(() => {
@@ -129,12 +128,12 @@ export default function StaysPage() {
 
   // Auto-search if city param present
   useEffect(() => {
-    if (queryCity && checkin && checkout) handleLiveSearch();
+    if (queryCity) handleLiveSearch();
   }, [queryCity]);
 
   const handleLiveSearch = async () => {
-    if (!city || !checkin || !checkout) {
-      toast({ title: "Enter city, check-in and check-out dates", variant: "destructive" });
+    if (!city) {
+      toast({ title: "Enter a city name", variant: "destructive" });
       return;
     }
     if (!firebaseUser) {
@@ -158,9 +157,8 @@ export default function StaysPage() {
       // Search hotels
       const hotelRes = await searchHotelsViaProxy({
         destination: destId,
-        checkIn: checkin,
-        checkOut: checkout,
-        adults: parseInt(guests),
+        checkIn: new Date().toISOString().split("T")[0],
+        checkOut: new Date(Date.now() + 86400000).toISOString().split("T")[0],
       });
 
       const hotels = ((hotelRes.data as { result?: HotelResult[] })?.result || []) as HotelResult[];
@@ -197,46 +195,75 @@ export default function StaysPage() {
   return (
     <div className="min-h-screen bg-surface pb-24 md:pb-8">
       {/* Hero */}
-      <div className="bg-gradient-to-br from-primary/10 to-primary/5 pt-20 pb-8 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl font-serif text-primary mb-2">Eco Stays Across India</h1>
-          <p className="text-muted-foreground">From riverside homestays to mountain retreats — all sustainably curated.</p>
-        </div>
-      </div>
+      {/* Hero */}
+<div className="relative h-[320px] overflow-hidden">
+  <img
+    src="/images/stays-hero.jpg"
+    alt="Eco Stays"
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+
+  <div className="absolute inset-0 bg-black/40" />
+
+  <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
+    <h1 className="text-5xl font-serif mb-4">
+      Eco Stays Across India
+    </h1>
+
+    <p className="text-lg max-w-2xl">
+      Discover sustainable retreats, mountain homestays and unforgettable experiences across India.
+    </p>
+  </div>
+</div>
 
       <div className="max-w-4xl mx-auto px-4 mt-6 space-y-6">
 
         {/* Live Hotel Search */}
         <div className="glass rounded-[24px] p-6">
-          <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
-            <Search className="w-4 h-4 text-primary" />
-            {firebaseUser ? "Search Live Hotels" : "Search Live Hotels (Sign in required)"}
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <input value={city} onChange={e=>setCity(e.target.value)}
-              placeholder="City (e.g. Manali)"
-              className="col-span-2 md:col-span-1 border border-border rounded-xl px-3 py-2.5 text-sm bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary/20" />
-            <input type="date" value={checkin} onChange={e=>setCheckin(e.target.value)}
-              min={new Date().toISOString().split("T")[0]}
-              className="border border-border rounded-xl px-3 py-2.5 text-sm bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary/20" />
-            <input type="date" value={checkout} onChange={e=>setCheckout(e.target.value)}
-              min={checkin || new Date().toISOString().split("T")[0]}
-              className="border border-border rounded-xl px-3 py-2.5 text-sm bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary/20" />
-            <select value={guests} onChange={e=>setGuests(e.target.value)}
-              className="border border-border rounded-xl px-3 py-2.5 text-sm bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary/20">
-              {[1,2,3,4,5,6].map(n=><option key={n} value={n}>{n} guest{n>1?"s":""}</option>)}
-            </select>
-          </div>
-          <button onClick={handleLiveSearch} disabled={loadingLive}
-            className="mt-3 w-full bg-primary text-white rounded-xl py-2.5 text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-60 flex items-center justify-center gap-2">
-            {loadingLive ? <><Loader2 className="w-4 h-4 animate-spin"/>Searching...</> : <><Search className="w-4 h-4"/>Search Hotels</>}
-          </button>
-          {liveHotels.length > 0 && (
-            <button onClick={()=>setLiveHotels([])} className="mt-2 text-xs text-muted-foreground underline w-full text-center">
-              Clear live results — show curated stays
-            </button>
-          )}
-        </div>
+  <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
+    <Search className="w-4 h-4 text-primary" />
+
+    {firebaseUser
+      ? "Search Live Hotels"
+      : "Search Live Hotels (Sign in required)"}
+  </h2>
+
+  <div className="flex flex-col md:flex-row gap-3">
+    <Input
+      placeholder="Search hotels by city..."
+      value={city}
+      onChange={(e) => setCity(e.target.value)}
+      className="flex-1"
+    />
+
+    <Button
+      onClick={handleLiveSearch}
+      disabled={loadingLive}
+      className="md:w-auto"
+    >
+      {loadingLive ? (
+        <>
+          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+          Searching...
+        </>
+      ) : (
+        <>
+          <Search className="w-4 h-4 mr-2" />
+          Search
+        </>
+      )}
+    </Button>
+  </div>
+
+  {liveHotels.length > 0 && (
+    <button
+      onClick={() => setLiveHotels([])}
+      className="mt-3 text-xs text-muted-foreground underline w-full text-center"
+    >
+      Clear live results — show curated stays
+    </button>
+  )}
+</div>
 
         {/* Region Chips (only when showing curated) */}
         {liveHotels.length === 0 && (
@@ -289,7 +316,7 @@ export default function StaysPage() {
         </p>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayStays.map(stay => (
             <StayCard
               key={stay.id}
@@ -299,7 +326,7 @@ export default function StaysPage() {
             />
           ))}
           {displayStays.length === 0 && (
-            <div className="col-span-2 text-center py-12 text-muted-foreground">
+            <div className="col-span-full text-center py-12 text-muted-foreground">
               No stays match your filters. Try adjusting them.
             </div>
           )}

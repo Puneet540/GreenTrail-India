@@ -462,7 +462,6 @@ export default function TravelPage() {
 
           {/* Results */}
           <TabsContent value="trains">
-            {!searched && !searching && <SearchPrompt icon={<Train className="w-6 h-6" />} text="Search trains between any two Indian cities or stations" sub={apiReady ? "Live seat availability from IRCTC" : "Add VITE_RAPIDAPI_KEY for live data"} />}
             {searching && <LoadingState label="Searching trains…" />}
             {searched && !searching && (
               <>
