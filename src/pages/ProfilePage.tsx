@@ -1,7 +1,3 @@
-// ============================================================
-//  GreenTrail India — Profile Page (Backend-powered)
-// ============================================================
-
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Loader2, Edit2, Save, X, MapPin, Mail, Phone, Leaf, Star, LogOut } from "lucide-react";
@@ -44,7 +40,7 @@ export default function ProfilePage() {
   // Load user data
   useEffect(() => {
     if (!backendUser) return;
-    Promise.all([getMyItineraries({ limit: 5 }), getMyBookings({ limit: 5 }), getMyReviews()])
+    Promise.all([getMyItineraries({ limit: 5 }), getMyBookings(), getMyReviews()])
       .then(([itin, book, rev]) => {
         setItineraries(itin.data || []);
         setBookings(book.data || []);

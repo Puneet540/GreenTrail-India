@@ -5,7 +5,7 @@
 // ============================================================
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { onAuthStateChanged, type User } from "@/lib/firebase";
+import { getAuth, onAuthStateChanged, type User } from "firebase/auth";
 import { syncUser, getMyProfile, type UserProfile } from "@/lib/backendApi";
 
 type AuthContextType = {
@@ -37,7 +37,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(async (user) => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setFirebaseUser(user);
 
       if (user) {

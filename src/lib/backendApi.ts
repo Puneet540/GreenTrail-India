@@ -5,6 +5,7 @@
 // ============================================================
 
 import { getAuth } from "firebase/auth";
+// Note: Firebase must be initialized before this runs (done in main.tsx via firebase.ts)
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
@@ -126,7 +127,12 @@ export async function getMyItineraries(params?: {
   page?: number;
   limit?: number;
 }) {
-  const query = new URLSearchParams(params as Record<string, string>).toString();
+  const query = new URLSearchParams(
+    params ? Object.entries(params).reduce((acc, [key, value]) => {
+      if (value !== undefined) acc[key] = String(value);
+      return acc;
+    }, {} as Record<string, string>) : {}
+  ).toString();
   return apiFetch<ItineraryListResponse>(`/api/itineraries${query ? `?${query}` : ""}`);
 }
 
@@ -249,7 +255,12 @@ export async function searchHotelsViaProxy(params: {
   children?: number;
   rooms?: number;
 }) {
-  const query = new URLSearchParams(params as Record<string, string>).toString();
+  const query = new URLSearchParams(
+    Object.entries(params).reduce((acc, [key, value]) => {
+      if (value !== undefined) acc[key] = String(value);
+      return acc;
+    }, {} as Record<string, string>)
+  ).toString();
   return apiFetch<{ success: boolean; data: unknown }>(`/api/proxy/hotels?${query}`);
 }
 
