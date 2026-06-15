@@ -72,7 +72,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen pt-20 md:pt-24">
       <div className="hidden md:flex w-1/2 relative items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
