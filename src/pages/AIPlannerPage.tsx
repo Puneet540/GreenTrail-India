@@ -185,7 +185,7 @@ Respond ONLY with valid JSON matching this exact schema (no markdown, no backtic
       <section className="relative pt-28 pb-28 px-4 text-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80" alt="Mountains" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-surface" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-black/30 to-transparent" />
         </div>
         <div className="relative z-10 max-w-2xl mx-auto">
           <Badge variant="outline" className="border-white/30 text-white/80 backdrop-blur-sm mb-6 text-xs px-3 py-1">
