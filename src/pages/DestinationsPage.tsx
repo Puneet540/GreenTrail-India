@@ -81,7 +81,7 @@ export default function DestinationsPage() {
 
       <div className="relative h-[320px] overflow-hidden">
   <img
-    src="https://unsplash.com/photos/man-taking-photo-of-hot-air-balloons-eOcyhe5-9sQ"
+    src="https://images.unsplash.com/photo-1530801584475-31d9d4cf7b33?w=1600&q=80&fit=crop"
     className="absolute inset-0 w-full h-full object-cover"
     alt="Explore India"
   />
