@@ -77,7 +77,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen pt-20 md:pt-24 flex">
+    <div className="min-h-screen pt-20 md:pt-20 flex">
       {/* Left Panel */}
       <div className="hidden md:flex w-1/2 relative bg-primary items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
