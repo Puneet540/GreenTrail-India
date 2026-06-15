@@ -203,7 +203,7 @@ export default function StaysPage() {
     className="absolute inset-0 w-full h-full object-cover"
   />
 
-  <div className="absolute inset-0 bg-black/40" />
+  <div className="absolute inset-0 bg-gradient-to-t from-background via-black/30 to-transparent" />
 
   <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center px-4">
     <h1 className="text-5xl font-serif mb-4">
