@@ -72,7 +72,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen pt-20 md:pt-24">
+    <div className="min-h-screen pt-20 md:pt-22 flex">
       <div className="hidden md:flex w-1/2 relative items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -91,10 +91,6 @@ export default function RegisterPage() {
       </div>
 
       <div className="w-full md:w-1/2 flex items-center justify-center p-8 bg-background relative">
-        <Link href="/" className="absolute top-8 left-8 text-primary font-serif italic text-xl">
-          GreenTrail India
-        </Link>
-
         <div className="w-full max-w-md">
           <div className="glass rounded-[32px] p-8 md:p-10">
             <div className="text-center mb-8">
