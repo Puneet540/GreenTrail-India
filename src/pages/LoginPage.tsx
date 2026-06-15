@@ -100,10 +100,6 @@ export default function LoginPage() {
 
       {/* Right Panel */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-8 bg-background relative">
-        <Link href="/" className="absolute top-8 left-8 text-primary font-serif italic text-xl">
-          GreenTrail India
-        </Link>
-
         <div className="w-full max-w-md">
           <div className="glass rounded-[32px] p-8 md:p-12">
             <div className="text-center mb-10">
