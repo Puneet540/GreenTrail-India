@@ -368,18 +368,6 @@ export default function TravelPage() {
 
       <div className="max-w-6xl mx-auto px-4 md:px-4 pt-20 md:pt-10 pb-10">
 
-        {/* API status banner */}
-        <div className={`rounded-2xl px-5 py-3 border flex items-center gap-3 text-sm mb-8 ${
-          apiReady
-            ? "bg-green-50 border-green-200 text-green-800"
-            : "glass border-border/30 text-muted-foreground"
-        }`}>
-          {apiReady
-            ? <><CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" /><span><strong>Live IRCTC data active</strong> via RapidAPI. Train searches return real-time availability.</span></>
-            : <><AlertCircle className="w-4 h-4 text-amber-500 shrink-0" /><span>Add <code className="bg-surface-container px-1.5 py-0.5 rounded text-xs mx-1">VITE_RAPIDAPI_KEY=your_key</code> to <code className="bg-surface-container px-1.5 py-0.5 rounded text-xs">.env</code> to enable live IRCTC train data. Showing sample routes now.</span></>
-          }
-        </div>
-
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={v => { setActiveTab(v); setSearched(false); }}>
           <div className="flex justify-center mb-8">
