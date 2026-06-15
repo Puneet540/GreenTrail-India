@@ -198,7 +198,7 @@ export default function StaysPage() {
       {/* Hero */}
 <div className="relative h-[320px] overflow-hidden">
   <img
-    src="https://unsplash.com/photos/brown-wooden-house-on-green-grass-field-near-snow-covered-mountain-during-daytime-ZI9zYWhLyy0"
+    src="https://images.unsplash.com/photo-1609326129829-0f5f15f0df30?w=1600&q=80&fit=crop"
     alt="Eco Stays"
     className="absolute inset-0 w-full h-full object-cover"
   />
