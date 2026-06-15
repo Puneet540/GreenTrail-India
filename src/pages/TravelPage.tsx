@@ -337,14 +337,6 @@ export default function TravelPage() {
   };
 
   // Trains to display: live if API worked, else fall back to static sample data
-  const displayTrains: LiveTrain[] = liveTrains.length > 0
-    ? liveTrains
-    : searched
-      ? TRAINS.filter(t => !form.from || matches(t.from, form.from))
-               .filter(t => !form.to   || matches(t.to,   form.to))
-               .map(t => ({ ...t, id: t.id }))
-      : [];
-
   const handleBook = () => goTo("/checkout");
 
   return (
