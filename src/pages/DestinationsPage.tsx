@@ -81,7 +81,7 @@ export default function DestinationsPage() {
 
       <div className="relative h-[320px] overflow-hidden">
   <img
-    src=https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600&q=80"
+    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600&q=80"
     className="absolute inset-0 w-full h-full object-cover"
     alt="Explore India"
   />
