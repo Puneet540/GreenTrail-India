@@ -82,7 +82,7 @@ export default function StoriesPage() {
             alt="Forest"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-black/30 to-transparent" />
         </div>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl md:text-7xl font-serif text-white mb-4">Shared Rhythms</h1>
